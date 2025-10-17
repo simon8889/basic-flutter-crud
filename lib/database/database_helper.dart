@@ -8,9 +8,8 @@ class DatabaseHelper {
 
   static Database? _database;
 
-  static const String _databaseName = 'datos_personales.db';
+  static const String _databaseName = 'personas.db';
   static const int _databaseVersion = 1;
-
   static const String tablePersonas = 'personas';
 
   Future<Database> get database async {
@@ -34,28 +33,17 @@ class DatabaseHelper {
     await db.execute('''
       CREATE TABLE $tablePersonas (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nombre_completo TEXT NOT NULL,
-        numero_documento TEXT NOT NULL UNIQUE,
+        nombre TEXT NOT NULL,
+        apellido TEXT NOT NULL,
         telefono TEXT NOT NULL,
-        email TEXT NOT NULL,
-        direccion TEXT NOT NULL
+        edad INTEGER NOT NULL,
+        email TEXT NOT NULL
       )
     ''');
-
-    await db.execute(
-      'CREATE INDEX idx_numero_documento ON $tablePersonas(numero_documento)',
-    );
   }
 
   Future<void> close() async {
     final db = await database;
     await db.close();
-  }
-
-  Future<void> deleteDatabase() async {
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, _databaseName);
-    await databaseFactory.deleteDatabase(path);
-    _database = null;
   }
 }

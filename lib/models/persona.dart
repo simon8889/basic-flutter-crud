@@ -2,19 +2,17 @@ class Persona {
   final int? id;
   final String nombre;
   final String apellido;
-  final String documento;
+  final String telefono;
   final int edad;
   final String email;
-  final String telefono;
   
   Persona({
     this.id,
     required this.nombre,
     required this.apellido,
-    required this.documento,
+    required this.telefono,
     required this.edad,
     required this.email,
-    required this.telefono,
   });
   
   factory Persona.fromMap(Map<String, dynamic> map) {
@@ -22,10 +20,9 @@ class Persona {
       id: map['id'] as int?,
       nombre: map['nombre'] as String,
       apellido: map['apellido'] as String,
-      documento: map['documento'] as String,
+      telefono: map['telefono'] as String,
       edad: map['edad'] as int,
       email: map['email'] as String,
-      telefono: map['telefono'] as String,
     );
   }
   
@@ -34,10 +31,9 @@ class Persona {
       'id': id,
       'nombre': nombre,
       'apellido': apellido,
-      'documento': documento,
+      'telefono': telefono,
       'edad': edad,
       'email': email,
-      'telefono': telefono,
     };
   }
   
@@ -45,24 +41,17 @@ class Persona {
     int? id,
     String? nombre,
     String? apellido,
-    String? documento,
+    String? telefono,
     int? edad,
     String? email,
-    String? telefono,
   }) {
     return Persona(
       id: id ?? this.id,
       nombre: nombre ?? this.nombre,
       apellido: apellido ?? this.apellido,
-      documento: documento ?? this.documento,
+      telefono: telefono ?? this.telefono,
       edad: edad ?? this.edad,
       email: email ?? this.email,
-      telefono: telefono ?? this.telefono,
     );
-  }
-  
-  @override
-  String toString() {
-    return 'Persona{id: $id, nombre: $nombre, apellido: $apellido, documento: $documento, edad: $edad, email: $email, telefono: $telefono}';
   }
 }
